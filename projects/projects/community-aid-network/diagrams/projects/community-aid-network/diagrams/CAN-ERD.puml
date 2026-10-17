@@ -1,0 +1,114 @@
+@startuml
+
+title Community Aid Network (CAN) - Entity Relationship Diagram
+
+hide circle
+skinparam linetype ortho
+skinparam entity {
+    BackgroundColor #F8F9FA
+    BorderColor #34495E
+}
+
+entity "USER" as User {
+    * user_id : INT <<PK>>
+    --
+    full_name : VARCHAR
+    email : VARCHAR
+    password_hash : VARCHAR
+    role : VARCHAR
+    verification_status : VARCHAR
+    barangay_id : INT <<FK>>
+    created_at : DATETIME
+}
+
+entity "BARANGAY" as Barangay {
+    * barangay_id : INT <<PK>>
+    --
+    barangay_name : VARCHAR
+    municipality : VARCHAR
+    province : VARCHAR
+}
+
+entity "SHELTER" as Shelter {
+    * shelter_id : INT <<PK>>
+    --
+    shelter_name : VARCHAR
+    location : VARCHAR
+    contact_number : VARCHAR
+    barangay_id : INT <<FK>>
+}
+
+entity "AID_REQUEST" as AidRequest {
+    * request_id : INT <<PK>>
+    --
+    created_by : INT <<FK>>
+    shelter_id : INT <<FK>>
+    request_title : VARCHAR
+    description : TEXT
+    location : VARCHAR
+    urgency_level : VARCHAR
+    request_status : VARCHAR
+    created_at : DATETIME
+    updated_at : DATETIME
+}
+
+entity "REQUEST_ITEM" as RequestItem {
+    * item_id : INT <<PK>>
+    --
+    request_id : INT <<FK>>
+    item_name : VARCHAR
+    item_category : VARCHAR
+    quantity_needed : INT
+    quantity_fulfilled : INT
+    unit : VARCHAR
+}
+
+entity "FULFILLMENT" as Fulfillment {
+    * fulfillment_id : INT <<PK>>
+    --
+    request_id : INT <<FK>>
+    item_id : INT <<FK>>
+    donor_id : INT <<FK>>
+    quantity_offered : INT
+    quantity_delivered : INT
+    fulfillment_status : VARCHAR
+    created_at : DATETIME
+}
+
+entity "STATUS_HISTORY" as StatusHistory {
+    * history_id : INT <<PK>>
+    --
+    request_id : INT <<FK>>
+    updated_by : INT <<FK>>
+    previous_status : VARCHAR
+    new_status : VARCHAR
+    remarks : TEXT
+    updated_at : DATETIME
+}
+
+entity "MESSAGE" as Message {
+    * message_id : INT <<PK>>
+    --
+    sender_id : INT <<FK>>
+    receiver_id : INT <<FK>>
+    request_id : INT <<FK>>
+    message_content : TEXT
+    sent_at : DATETIME
+    read_status : BOOLEAN
+}
+
+Barangay ||--o{ User : registers
+Barangay ||--o{ Shelter : contains
+User ||--o{ AidRequest : creates
+Shelter ||--o{ AidRequest : receives
+AidRequest ||--|{ RequestItem : contains
+AidRequest ||--o{ Fulfillment : receives
+RequestItem ||--o{ Fulfillment : fulfilled through
+User ||--o{ Fulfillment : contributes
+AidRequest ||--o{ StatusHistory : tracks
+User ||--o{ StatusHistory : records
+User ||--o{ Message : sends
+User ||--o{ Message : receives
+AidRequest ||--o{ Message : relates to
+
+@enduml
