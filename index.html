@@ -3,81 +3,144 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>acezeey | Portfolio</title>
+
     <style>
         :root {
-            --bg-color: #0f172a;
-            --card-bg: #1e293b;
-            --text-primary: #f8fafc;
-            --text-secondary: #94a3b8;
-            --accent: #38bdf8;
-            --accent-hover: #7dd3fc;
-            --border: #334155;
+            --bg-color: #080d1b;
+            --card-bg: #111a30;
+            --text-primary: #f1f5ff;
+            --text-secondary: #a6b4d0;
+            --accent: #65e6ff;
+            --accent-hover: #c084fc;
+            --border: #34466f;
+            --pixel-shadow: #1c2d50;
         }
 
-        body { 
-            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; 
-            max-width: 800px; 
-            margin: 60px auto; 
-            padding: 0 20px; 
-            line-height: 1.7; 
-            color: var(--text-primary); 
-            background-color: var(--bg-color);
+        * {
+            box-sizing: border-box;
         }
+
+        body {
+            font-family: "Courier New", monospace;
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 0 20px;
+            line-height: 1.8;
+            color: var(--text-primary);
+            background:
+                radial-gradient(ellipse at top, #14203a 0%, transparent 60%),
+                linear-gradient(135deg, #080d1b, #15102c);
+        }
+
+        /* ANIMATED SPACE COVER */
+
+        .cover {
+            width: 100%;
+            height: 300px;
+            border: 7px solid var(--border);
+            box-shadow: 10px 10px 0 var(--pixel-shadow);
+            background: #10182b;
+            overflow: hidden;
+            margin-bottom: 35px;
+        }
+
+        .cover video {
+            width: 100%;
+            height: 100%;
+            display: block;
+            object-fit: cover;
+        }
+
+        /* PROFILE */
+
+        .profile-area {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+        }
+
+        .profile-picture {
+            width: 175px;
+            height: 175px;
+            object-fit: cover;
+            border: 7px solid var(--accent);
+            box-shadow: 10px 10px 0 var(--pixel-shadow);
+            background: var(--card-bg);
+        }
+
+        .profile-label {
+            color: var(--accent);
+            letter-spacing: 3px;
+            font-size: 1rem;
+            overflow-wrap: anywhere;
+        }
+
+        /* HEADER */
 
         header {
-            margin-bottom: 40px;
+            margin-bottom: 45px;
         }
 
-        h1 { 
-            color: var(--text-primary); 
-            border-bottom: 2px solid var(--border); 
-            padding-bottom: 15px; 
-            font-size: 2.2rem;
-            margin-bottom: 10px;
+        h1 {
+            color: var(--text-primary);
+            border-bottom: 5px solid var(--border);
+            padding-bottom: 20px;
+            font-size: 2.5rem;
+            line-height: 1.4;
+            margin-bottom: 15px;
+            overflow-wrap: anywhere;
         }
 
         header p {
             color: var(--accent);
-            font-weight: 500;
             font-size: 1.1rem;
         }
 
+        /* SECTIONS */
+
         section {
-            margin-bottom: 35px;
+            margin-bottom: 45px;
         }
 
         h2 {
-            font-size: 1.4rem;
-            color: var(--text-primary);
-            margin-bottom: 15px;
+            font-size: 1.6rem;
+            color: var(--accent);
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+
+        h2::before {
+            content: "> ";
+            color: var(--accent-hover);
         }
 
         p {
             color: var(--text-secondary);
         }
 
-        .project { 
-            background-color: var(--card-bg);
-            border: 1px solid var(--border); 
-            padding: 24px; 
-            margin: 15px 0; 
-            border-radius: 8px; 
+        /* PROJECT CARD */
+
+        .project {
+            background: linear-gradient(145deg, #151f38, #101629);
+            border: 3px solid var(--border);
+            padding: 24px;
+            margin: 20px 0;
+            box-shadow: 7px 7px 0 var(--pixel-shadow);
             transition: transform 0.2s ease, border-color 0.2s ease;
         }
 
         .project:hover {
             border-color: var(--accent);
-            transform: translateY(-2px);
+            transform: translate(-2px, -2px);
         }
 
         .project h3 {
             color: var(--text-primary);
             margin-top: 0;
-            margin-bottom: 10px;
-        }
-
-        .project p {
             margin-bottom: 10px;
         }
 
@@ -87,50 +150,183 @@
             font-size: 0.95rem;
         }
 
-        a { 
-            color: var(--accent); 
-            text-decoration: none; 
+        /* LINKS */
+
+        a {
+            color: var(--accent);
+            text-decoration: none;
+            overflow-wrap: anywhere;
         }
 
-        a:hover { 
+        a:hover {
             color: var(--accent-hover);
-            text-decoration: underline; 
         }
+
+        /* CONTACT BOX */
 
         .contact-box {
-            background-color: var(--card-bg);
-            border: 1px solid var(--border);
+            background: var(--card-bg);
+            border: 3px solid var(--border);
             padding: 20px 24px;
-            border-radius: 8px;
+            box-shadow: 7px 7px 0 var(--pixel-shadow);
+        }
+
+        /* PIXEL BUTTON */
+
+        .pixel-button {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 12px 28px;
+            background: var(--accent);
+            color: #080d1b;
+            font-family: "Courier New", monospace;
+            font-weight: bold;
+            font-size: 1.1rem;
+            letter-spacing: 3px;
+            border: 4px solid var(--accent);
+            box-shadow: 6px 6px 0 var(--pixel-shadow);
+            text-decoration: none;
+            transition: transform 0.15s ease, box-shadow 0.15s ease;
+        }
+
+        .pixel-button:hover {
+            color: #080d1b;
+            background: var(--accent-hover);
+            border-color: var(--accent-hover);
+            transform: translate(3px, 3px);
+            box-shadow: 3px 3px 0 var(--pixel-shadow);
+        }
+
+        footer {
+            margin-top: 50px;
+            padding: 20px 0;
+            border-top: 3px solid var(--border);
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            text-align: center;
+        }
+
+        /* MOBILE */
+
+        @media (max-width: 600px) {
+            body {
+                margin: 20px auto;
+                padding: 0 18px;
+            }
+
+            .cover {
+                height: 200px;
+            }
+
+            .profile-picture {
+                width: 145px;
+                height: 145px;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            h2 {
+                font-size: 1.35rem;
+            }
+
+            .profile-area {
+                gap: 20px;
+            }
         }
     </style>
 </head>
+
 <body>
+
+    <!-- ANIMATED SPACE COVER -->
+    <div class="cover">
+        <video autoplay muted loop playsinline>
+            <source src="assets/cover.mp4" type="video/mp4">
+            Your browser does not support this video.
+        </video>
+    </div>
+
+    <!-- PROFILE PICTURE -->
+    <div class="profile-area">
+        <img
+            class="profile-picture"
+            src="assets/profile.jpg"
+            alt="Shanti Quiban's profile"
+        >
+
+        <div class="profile-label">
+            PLAYER PROFILE // ACEZEEY
+        </div>
+    </div>
+
+    <!-- INTRODUCTION -->
     <header>
-        <h1>Hello, I am Shanti Quiban </h1>
-        <p>Computer Engineering Student & Creator building Project Nexus.</p>
+        <h1>Hello, I am Shanti Quiban</h1>
+
+        <p>
+            Computer Engineering Student &amp; Creator building Project Nexus.
+        </p>
     </header>
-    
+
+    <!-- ABOUT ME -->
     <section>
         <h2>About Me</h2>
-        <p>I am a student, creative, gamer, and developer exploring innovative workflows, software design, and digital experiences.</p>
+
+        <p>
+            I am a student, creative, gamer, and developer exploring
+            innovative workflows, software design, and digital experiences.
+        </p>
     </section>
 
+    <!-- PROJECTS -->
     <section>
         <h2>My Projects</h2>
+
         <div class="project">
             <h3>Project Nexus: Community Aid Networks (CAN)</h3>
-            <p>A web-based platform designed for disaster response, emergency reporting, and local social support.</p>
-            <p><em>Code repository coming soon at <a href="https://github.com/acezeey" target="_blank">github.com/acezeey</a>!</em></p>
+
+            <p>
+                A web-based platform designed for disaster response,
+                emergency reporting, and local social support.
+            </p>
+
+            <p>
+                <em>
+                    Code repository coming soon at
+                    <a href="https://github.com/acezeey" target="_blank"
+                       rel="noopener noreferrer">github.com/acezeey</a>!
+                </em>
+            </p>
         </div>
     </section>
 
+    <!-- CONTACT -->
     <section>
         <h2>Contact Me</h2>
+
         <div class="contact-box">
-            <p>GitHub: <a href="https://github.com/acezeey" target="_blank">github.com/acezeey</a></p>
-            <p>Get in touch via Gmail: <a href="mailto:acezeey39@gmail.com">acezeey39@gmail.com</a></p>
+            <p>
+                GitHub:
+                <a href="https://github.com/acezeey" target="_blank"
+                   rel="noopener noreferrer">github.com/acezeey</a>
+            </p>
+
+            <p>Want to get in touch?</p>
+
+            <!-- CLICK BUTTON -->
+            <a class="pixel-button"
+               href="contact.html"
+               aria-label="Visit my contact page">
+                CLICK
+            </a>
         </div>
     </section>
+
+    <footer>
+        ACEZEEY // PLAYER ONE &copy; 2026
+    </footer>
+
 </body>
 </html>
